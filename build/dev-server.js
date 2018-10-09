@@ -12,6 +12,7 @@ var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 var documents = require('../routes/sentiers');
+var documentsMLab = require('../routes/sentiersMLab');
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -89,7 +90,10 @@ module.exports = {
     server.close()
   }
 }
+/**/
 app.get('/musickon3399', documents.findAll);
 app.get('/inventaireZ', documents.inventaireZ);
 app.get('/inventaireZ/:id', documents.findById);
+
+app.get('/company', documentsMLab.findCompany);
 console.log( "fin dev-server.js");

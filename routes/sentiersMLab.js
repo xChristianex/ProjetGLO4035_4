@@ -22,14 +22,17 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 let dbServeur;
 // Connection URL
-const url = 'mongodb://localhost:27017';  // ac:ok
+// const url = 'mongodb://localhost:27017';  // ac:ok
 //const url = 'mongodb://ds133796.mlab.com:33796/duproprio';
+const url = 'mongodb://glo4035:lolk1234@ds133796.mlab.com:33796/duproprio';
+
+
 
 // Database Name
-const dbName = 'ulaval';  // ac:ok
-//const dbName = 'duproprio';
-const laCollection = 'inventaireZ';////////'inventaireZ';
-//const laCompany= 'company';
+// const dbName = 'ulaval';  // ac:ok
+const dbName = 'duproprio';
+const laCollection = 'company';////////'inventaireZ';
+const laCompany= 'company';
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, client) {
@@ -108,6 +111,20 @@ exports.findById = function(req, res) {
     });
   });
 };
+
+
+exports.findCompany = function(req, res) {
+  console.log('exports.findCompany*** - Recherche de tous les documents de '+laCompany);
+  dbServeur.collection( laCompany, function(err, collection) {
+    collection.find().limit(20).toArray(function(err, items) {
+      console.log('findCompany*** - Documents '+laCompany+' trouvés et retournés');
+      res.send(items);
+      console.log(items);
+
+    });
+  });
+};
+
 
 
 

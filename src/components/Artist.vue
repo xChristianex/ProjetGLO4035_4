@@ -13,6 +13,7 @@
         le sujet: {{item.sujet}}
         <br>
       </div>
+
     </div>
 </template>
 
@@ -57,6 +58,7 @@
         });
         console.log("fin extraction");
       },
+
     }
 
   };

@@ -13,6 +13,9 @@
             <li>
                 <router-link to="/artist">Autre chose</router-link>
             </li>
+          <li>
+            <router-link to="/mlab">MLab</router-link>
+          </li>
         </ul>
     </nav>
 </template>

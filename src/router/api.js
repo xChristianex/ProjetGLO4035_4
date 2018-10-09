@@ -11,6 +11,14 @@ const mongoURL = 'http://localhost:8080';
 // npm install mongodb --save
 // npm --loglevel verbose install mongodb
 
+
+// docker stop mongo_devoir1
+// docker container prune -f
+// docker run -d --name mongo_devoir1 mongo:3.6.0
+// docker exec -it mongo_devoir1 mongo ds133796.mlab.com:33796/duproprio -u glo4035 -p lolk1234
+// commerce = db.getCollection("company")
+// db.company.find()
+
 // const mongo = require('mongodb');
 // const mongo = require('mongodb').MongoClient;
 /*
@@ -55,6 +63,17 @@ export const getinventaireZID = inventaireId =>
     url: `${mongoURL}/inventaireZ/5`,
   }).then(response => response.data)
     .catch(error => error);
+
+
+export const getCompany = inventaireId =>
+  axios({
+    method: 'GET',
+    url: `${mongoURL}/company`,
+  }).then(response => response.data)
+    .catch(error => error);
+
+
+
 
 export const getAlbum = collectionId =>
   axios({
