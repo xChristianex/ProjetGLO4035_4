@@ -24,3 +24,26 @@ def effacer():
             else:
                 return make_response("Bon mot de passe", 200)
     return render_template('page???')
+
+"""
+On défini dans la classe ce qu'on veut dans le doc et les restrictions
+voir:https://realpython.com/introduction-to-mongodb-and-python/#inserting-documents
+ou http://docs.mongoengine.org/guide/defining-documents.html
+"""
+
+class Insertion(Document):
+    produit = StringField(required=True)
+    quantite = FloatField(required=True)
+
+@application.route("/", methods=["POST"])
+def verifier():
+    if request.method == "POST":
+        prod = request.form['Produit utilisé']
+        quant = request.form['Quantité utilisée']
+        
+        try:
+            doc = Insertion(prod, quant)
+            doc.save()
+            return make_response("Document mal formaté", 400)
+        except ValidationError:
+            return make_response("Document bien formaté", 200)
