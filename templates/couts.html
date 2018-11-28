@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Couts</title>
+    </head>
+<body>
+<form action="/">
+  <input type="submit" value="Accueil">
+  </form>
+  <br>
+  <h1>Analyse des coûts</h1>
+  <br>
+  <h2>Rapport à afficher</h2>
+  <form action="" method="POST">
+    <input type="radio" name="calcul" value="CoutTot" checked> Coût total<br>
+    <input type="radio" name="calcul" value="CoutMoyMl"> Coût moyen d'acquisition en millilitres (ml)<br>
+    <input type="radio" name="calcul" value="CoutMoyG"> Coût moyen d'acquisition en gramme (g)
+  <br>
+  <h2>Date (aaaa-mm-jj)</h2>
+  <input type="text" id="datecout" name="datecout" required>
+  <br>
+  <h2>Catégorie de produit</h2>
+  <select name="choixcat">
+  {% for i in itemlist %}
+    <option value="{{ i }}"{% if itemlist == i %} selected {% endif %}>{{ i }}</option>
+  {% endfor %}
+  </select>
+  <br><br>
+    <input type="submit" value="Lancer le calcul">
+  </form>
+  <br>
+  {% if resultat %}
+  <h2>Résultat</h2>
+  <h4>Coût : {{ resultat }} $</h4>
+  {% endif %}
+
+<br><br>
+{% if error %}
+{{ error }}
+{% endif %}
+{% if state %}
+{{ state }}
+{% endif %}
+{% if inv %}
+<h2>Liste des unités non converties</h2>
+<table>
+    <thead style="border: 1px solid black;">
+      <tr>
+        <th>Item</th>
+        <th>Quantité</th>
+        <th>Unité</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item, unit in inv.items() %}
+        {% for un, qty in unit.items() %}
+        <tr>
+          <td> {{ item }}: </td> 
+          <td> {{ qty }} </td>
+          <td> {{ un }} </td>
+        </tr>
+        {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+</body>
+</html>
+
+
+

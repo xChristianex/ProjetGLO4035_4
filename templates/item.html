@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Items</title>
+    </head>
+<body>
+<form action="/">
+  <input type="submit" value="Accueil">
+</form>
+<br>
+  <h1>Ajout d'un item ou d'informations de conversion</h1>
+<form action="" method=POST>
+  <input type="hidden" name="myMethod" value="AjoutItem" />
+  <h2>Ajout d'un item</h2>
+  <label for="item">Nom complet de l'item (incluant les catégories)</label>
+  <input type="text" name="item">
+  <br>
+  <input type="submit" value="Enregistrer">
+</form>
+<form action="" method=POST>
+  <input type="hidden" name="myMethod" value="AjoutConversion" />
+  <h2>Ajout d'informations de conversion</h2>
+  <label for="choixitem">Item</label>
+  <select name="choixitem">
+  {% for i in itemlist %}
+    <option value="{{ i }}" {% if itemlist == i %} selected {% endif %}>{{ i }}</option>
+  {% endfor %}
+  </select>
+  <br>
+  <label for="conv">1 ml correspond à combien de g?</label>
+  <input type="number" name="conv" step="any">
+  <br>
+  <input type="submit" value="Enregistrer">
+</form>
+<br>
+<br>
+{% if error %}
+{{ error }}
+{% endif %}
+{% if state %}
+{{ state }}
+{% endif %}

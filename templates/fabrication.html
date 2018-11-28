@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Fabrication</title>
+    </head>
+<body>
+<form action="/">
+  <input type="submit" value="Accueil">
+</form>
+<br>
+<form action="" method=POST enctype="multipart/form-data">
+  <h1>Fabrication de savons</h1>
+  <label for="datefab">Date de fabrication (aaaa-mm-jj) :</label>
+  <input type="text" id="datefab" name="datefab"><br>
+  <label for="job">Job</label>
+  <input type="number" step="any" name="job">
+  <h2>Item utilisé / créé</h2>
+    <label for="choixitem">Item</label>
+  <select class="form-control" name="choixitem" id="choixitem">
+  {% for i in itemlist %}
+    <option value="{{ i }}" {% if itemlist == i %} selected {% endif %}>{{ i }}</option>
+  {% endfor %}
+  </select>
+  <br>
+  <label for="qte">Quantité</label>
+  <input type="number" step="any" name="qte">
+  <br>
+  <label for="unit">Unité</label>
+  <input type="text" name="unit">
+  <br>
+  <input type="submit" value="Enregistrer">
+</form>
+<br><br>
+{% if error %}
+{{ error }}
+{% endif %}
+{% if state %}
+{{ state }}
+{% endif %}
+{% if job %}
+<h2>Job {{ job }}</h2>
+<table>
+    <thead style="border: 1px solid black;">
+      <tr>
+        <th>Item</th>
+        <th>Quantité</th>
+        <th>Unité</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item, unit in inv.items() %}
+        {% for un, qty in unit.items() %}
+        <tr>
+          <td> {{ item }}: </td> 
+          <td> {{ qty }} </td>
+          <td> {{ un }} </td>
+        </tr>
+        {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+</body>
+</html>
+
+
+

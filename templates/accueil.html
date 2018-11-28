@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Accueil</title>
+  </head>
+<body>
+  <h1>Accueil</h1>
+  <h2>Vider les collections</h2>
+  <form action="/" method="POST">
+    <input type="hidden" name="myMethod" value="DELETE" />
+    <label for="password">Mot de passe pour supprimer</label>
+    <input type="password" name="password" required><br>
+    <input type="submit" value="Vider">
+  </form>
+{% if error %}
+{{ error }}
+{% endif %}
+{% if state %}
+{{ state }}
+{% endif %}
+  <hr>
+  <h2>Choisir une action</h2>
+  <a href="fabrication">Fabrication de savons</a>
+  <br>
+  <a href="achats">Achat de matières premières</a>
+  <br>
+  <a href="couts">Analyser les coûts</a>
+  <br>
+  <a href="inventaire">Voir l'inventaire</a>
+  <br>
+  <a href="item">Ajouter un nouvel item dans la base de données ou des informations de conversion</a>  
+  <br>
+
+</body>
+</html>
